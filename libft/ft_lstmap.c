@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 07:22:29 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/03 19:33:19 by alopes-n         ###   ########.fr       */
+/*   Created: 2022/06/21 14:46:11 by alopes-n          #+#    #+#             */
+/*   Updated: 2022/06/21 15:05:15 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft.h"
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*new_content;
+	t_list	*new_list;
 
-int	ft_printf(const char *str, ...);
-int	printf_putchar(char c);
-int	printf_putstr(char *str);
-int	printf_puthex(unsigned long int n, char type);
-int	printf_putpointer(unsigned long int p);
-int	printf_putnbr(int nbr);
-int	printf_putunsigned(unsigned int n);
-
-#endif
+	new_list = NULL;
+	if (!lst)
+		return (NULL);
+	while (lst)
+	{
+		new_content = ft_lstnew(f(lst->content));
+		if (!new_content)
+		{
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, new_content);
+		lst = lst->next;
+	}
+	return (new_list);
+}

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 07:22:29 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/03 19:33:19 by alopes-n         ###   ########.fr       */
+/*   Created: 2022/06/17 19:05:58 by alopes-n          #+#    #+#             */
+/*   Updated: 2022/06/17 19:18:04 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*item;
 
-int	ft_printf(const char *str, ...);
-int	printf_putchar(char c);
-int	printf_putstr(char *str);
-int	printf_puthex(unsigned long int n, char type);
-int	printf_putpointer(unsigned long int p);
-int	printf_putnbr(int nbr);
-int	printf_putunsigned(unsigned int n);
-
-#endif
+	item = (t_list *)ft_calloc(sizeof(t_list), 1);
+	item->content = content;
+	item->next = NULL;
+	return (item);
+}

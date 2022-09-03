@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 07:22:29 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/03 19:33:19 by alopes-n         ###   ########.fr       */
+/*   Created: 2022/06/08 20:36:13 by alopes-n          #+#    #+#             */
+/*   Updated: 2022/06/08 23:44:41 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft.h"
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	len;
 
-int	ft_printf(const char *str, ...);
-int	printf_putchar(char c);
-int	printf_putstr(char *str);
-int	printf_puthex(unsigned long int n, char type);
-int	printf_putpointer(unsigned long int p);
-int	printf_putnbr(int nbr);
-int	printf_putunsigned(unsigned int n);
-
-#endif
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (ft_strchr(set, *s1) && *s1)
+		s1++;
+	len = ft_strlen(s1);
+	while (ft_strchr(set, s1[len - 1]) && len > 0)
+		len--;
+	return (ft_substr(s1, 0, len));
+}

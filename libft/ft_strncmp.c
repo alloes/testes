@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 07:22:29 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/03 19:33:19 by alopes-n         ###   ########.fr       */
+/*   Created: 2022/06/02 19:35:02 by alopes-n          #+#    #+#             */
+/*   Updated: 2022/06/16 22:41:13 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft.h"
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-int	ft_printf(const char *str, ...);
-int	printf_putchar(char c);
-int	printf_putstr(char *str);
-int	printf_puthex(unsigned long int n, char type);
-int	printf_putpointer(unsigned long int p);
-int	printf_putnbr(int nbr);
-int	printf_putunsigned(unsigned int n);
-
-#endif
+	str1 = ((unsigned char *)s1);
+	str2 = ((unsigned char *)s2);
+	i = 0;
+	while (i < n && (str1[i] || str2[i]))
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}

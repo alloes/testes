@@ -6,11 +6,11 @@
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 07:16:40 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/02 12:48:53 by alopes-n         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:34:05 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <ft_printf.h>
 
 static int	flag_conversion(const char *format, va_list args)
 {

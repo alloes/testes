@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alopes-n <alopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 07:22:29 by alopes-n          #+#    #+#             */
-/*   Updated: 2022/09/03 19:33:19 by alopes-n         ###   ########.fr       */
+/*   Created: 2022/06/03 18:58:13 by alopes-n          #+#    #+#             */
+/*   Updated: 2022/06/08 01:02:02 by alopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft.h"
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	char	*temp_b;
+	size_t	l_len;
 
-int	ft_printf(const char *str, ...);
-int	printf_putchar(char c);
-int	printf_putstr(char *str);
-int	printf_puthex(unsigned long int n, char type);
-int	printf_putpointer(unsigned long int p);
-int	printf_putnbr(int nbr);
-int	printf_putunsigned(unsigned int n);
-
-#endif
+	temp_b = (char *)big;
+	l_len = ft_strlen(little);
+	i = 0;
+	if (*little == '\0')
+		return (temp_b);
+	while (i < len && temp_b[i] != '\0')
+	{
+		if ((ft_strncmp(&temp_b[i], little, l_len) == 0) && (i + l_len <= len))
+		{
+			return (&temp_b[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
